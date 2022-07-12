@@ -104,11 +104,18 @@ const listDetail = (name) => {
 
 const Deletedata = (name) => {
     const contacts = loadContact();
-    const findData = contacts.filter(item => item.name !== name);
-    //console.log(findData);
-    
-    fs. writeFileSync('data/contacts.json',JSON.stringify(findData));
-    console.log(findData);
+    const findData = contacts.find(item => item.name == name);
+
+    if (findData !== undefined){
+        const deletedData = contacts.filter(item => item.name !== name);
+        
+        fs. writeFileSync('data/contacts.json',JSON.stringify(deletedData));
+        console.log(findData);
+
+    }else{
+        console.log('data tidak ada')
+    }
+
 };
 
 
